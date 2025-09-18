@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="propertystyle.css">
+
+  <meta charset="UTF-8">
+  <title>CSS Example</title>
+  <!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:lightgray;
+      background-image:url(HD-wallpaper-css-texture-modern-technology-background-cascading-style-sheets-css-code-texture-black-background-programming-concepts.jpg);
+    }
+
+    /* Section 1 */
+    #sec1 {
+      /* border: 2px solid #000000; */
+      padding: 10px;
+      width: 80%;
+      margin: auto;
+      background-color:lightgray;
+      color:darkgray;
+    }
+
+    #sec1 img {
+      /* border: 2px solid #000; */
+      float: left;
+      margin-right: 15px;
+      
+    }
+
+    /* First scrollable box (example inside section 1) */
+    .scrollable-section {
+      width: 100%;
+      height: 200px;
+      border: 2px solid #333;
+      padding: 10px;
+      overflow-y: auto;
+      background:white;
+      font-family: monospace;
+      white-space: pre;
+      box-sizing: border-box;
+      margin-top: 20px;
+      
+    }
+
+    /* Section 2 (flex layout for text + scroll box) */
+    #sec2 {
+      border: 2px solid #000;
+      padding: 10px;
+      width: 80%;
+      margin: 20px auto;
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+      box-sizing: border-box;
+      background-color:white;
+    }
+
+    .text-part {
+      flex: 2;
+    }
+
+    .scroll-box {
+      flex: 1;
+      border: 2px solid #333;
+      padding: 10px;
+      background:white;
+      font-family: monospace;
+      white-space: pre;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    /* hide radio buttons */
+    input[type="radio"] {
+      display: none;
+    }
+
+    /* clickable labels */
+    label {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      color: darkblue;
+      cursor: pointer;
+      margin: 5px 0;
+    }
+    label:hover {
+      text-decoration: underline;
+    }
+
+    /* default: nothing visible */
+    .scroll-box div {
+      display: none;
+    }
+
+    /* show when radio checked */
+    #inline:checked ~ .scroll-box .inline-code { display: block; }
+    #internal:checked ~ .scroll-box .internal-code { display: block; }
+    #external:checked ~ .scroll-box .external-code { display: block; }
+  </style> -->
+</head>
+<body>
+  <h1 style="text-align: center; color:rgb(241, 241, 245)">CSS TUTORIALS</h1>
+
+  <!-- Section 1 -->
+  <section id="sec1">
+    <img src="download.png" alt="CSS Image" height="250" width="250">
+    <h3 style="color:cadetblue ;  font-family: 'Montserrat', 'Roboto', Arial, sans-serif">WHAT IS CSS?</h3>
+    <p>
+      CSS stands for Cascading Style Sheets.
+      It’s a language used to describe how HTML elements should look on a webpage.
+      While HTML provides the structure (headings, paragraphs, images, etc.), 
+      CSS controls the presentation      things like:
+    </p>
+    <ul>
+      <li>Layout (how elements are arranged on the page)</li>
+      <li>Colors (text color, background color, borders)</li>
+      <li>Fonts (size, family, weight, style)</li>
+      <li>Spacing (margins, padding, line height)</li>
+      <li>Animations & transitions (smooth effects, hover states, keyframes)</li>
+    </ul>
+
+    <!-- First scrollable example -->
+    <div class="scrollable-section">
+For Example:
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: blue;
+      text-align: center;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, CSS!&lt;/h1&gt;
+  &lt;p&gt;This is styled with CSS.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="sec2">
+    <!-- Left side (text + labels) -->
+    <div class="text-part">
+      <h3>Properties Of CSS</h3>
+      <ol>
+        <li><label for="inline">INLINE</label></li>
+        <li><label for="internal">INTERNAL</label></li>
+        <li><label for="external">EXTERNAL</label></li>
+      </ol>
+
+      <h3>INLINE</h3>
+      <ul>
+        <li>Written directly in the HTML element using the style attribute.</li>
+        <li>Affects only the specific element where it is applied.</li>
+        <li>Quick to test or apply a single change.</li>
+        <li>Increases HTML file size if used too much.</li>
+        <li>Hard to maintain because styles are mixed with content.</li>
+        <li>Has the highest priority (overrides internal & external CSS).</li>
+        <li>Not recommended for large projects or multiple pages.</li>
+      </ul>
+
+      <h3>INTERNAL</h3>
+      <ul>
+        <li>Written inside a &lt;style&gt; tag in the &lt;head&gt; section.</li>
+        <li>Applies to the whole page where it’s written.</li>
+        <li>Keeps CSS separate from content (better than inline).</li>
+        <li>Easier to maintain than inline but not reusable across pages.</li>
+        <li>Good for single-page websites or demos.</li>
+        <li>If conflict with external CSS, internal wins (higher priority).</li>
+        <li>Adds extra code inside HTML (less clean than external).</li>
+      </ul>
+
+      <h3>EXTERNAL</h3>
+      <ul>
+        <li>Written in a separate .css file.</li>
+        <li>Linked to HTML with a &lt;link&gt; tag.</li>
+        <li>Reusable across multiple pages.</li>
+        <li>Keeps HTML clean and improves readability.</li>
+        <li>Best for large projects (easy to update styles).</li>
+        <li>Reduces page size if stylesheet is shared.</li>
+        <li>Has lowest priority (can be overridden by inline or internal).</li>
+      </ul>
+    </div>
+
+    <!-- Right side (radio + scroll-box) -->
+    <div>
+      <!-- radios -->
+      <input type="radio" name="cssType" id="inline" checked>
+      <input type="radio" name="cssType" id="internal">
+      <input type="radio" name="cssType" id="external">
+
+      <!-- scrollable code -->
+      <div class="scroll-box">
+        <div class="inline-code">
+🔹 Inline CSS
+&lt;p style="color:red; font-size:20px;"&gt;
+  This is inline CSS
+&lt;/p&gt;
+        </div>
+
+        <div class="internal-code">
+🔹 Internal CSS
+&lt;head&gt;
+  &lt;style&gt;
+    p {
+      color: blue;
+      font-size: 18px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;p&gt;This is internal CSS&lt;/p&gt;
+&lt;/body&gt;
+        </div>
+
+        <div class="external-code">
+🔹 External CSS
+&lt;!-- index.html --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- style.css --&gt;
+p {
+  color: green;
+  font-size: 16px;
+}
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

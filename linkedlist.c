@@ -1,129 +1,188 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct node{
-
+struct node {
     int data;
     struct node* link;
 };
 
+// Insert at the beginning
+void insertionatbegin(struct node** headdd) {
+    int value;
+    printf("Enter the value to insert at beginning: ");
+    scanf("%d", &value);
 
-void insertatend( struct node** headd,int value)
-{
-   struct node* new_node=(struct node*)malloc(sizeof(struct node));
-   
-   new_node->data=value;
-   new_node->link=NULL;
-   
-   
-   struct node* temp=*headd;
-   
-   while(temp->link!=NULL)
-   {
-       temp=temp->link;
-    }
-    
-    temp->link=new_node;
+    struct node* front_node = (struct node*)malloc(sizeof(struct node));
+    front_node->data = value;
+    front_node->link = *headdd;
+    *headdd = front_node;
 
-
-   } 
-
-   void insertionatbegin(struct node** headdd, int value)
-   {
-     struct node *front_node=(struct node*)malloc(sizeof(struct node));
-
-     struct node *temp=*headdd;
-
-     front_node->link=*headdd;
-     *headdd=front_node;
-
-     front_node->data=value;
-   }
-
-
-
-void display(struct node* head)
-{
-    // printf("%d",head->data);
-
-    struct node*tempp=head;
-
-    while (tempp!=NULL)
-    {
-        printf("[%d]\n",tempp->data);
-        tempp=tempp->link;
-    }
-    printf("\n");
-    
-} 
-
-void insertrandom(struct node** head,int value)
-{
-    struct node* rnode=(struct node*)malloc(sizeof(struct node));
-
-   struct node* temp=*head;
-
-   while(temp!=NULL)
-   {
-       if(temp->data==5)
-       {
-           rnode->link=temp->link;
-           temp->link=rnode;
-           
-           rnode->data=value;
-        //    printf("success");
-        }
-        // else{
-        //     printf("failed");
-            
-        // }
-        temp=temp->link;
-
-   }
+    printf("%d inserted at the beginning.\n", value);
 }
 
-void deleteatend(struct node** head)
-{
-   struct node* temp=*head;
-   struct node* temp2=*head;
+// Insert at the end
+void insertatend(struct node** headd) {
+    int value;
+    printf("Enter the value to insert at end: ");
+    scanf("%d", &value);
 
-   while(temp->link!=NULL)
-   {
-       printf("first loop");
-       temp=temp->link;            //sking one node at begining
+    struct node* new_node = (struct node*)malloc(sizeof(struct node));
+    new_node->data = value;
+    new_node->link = NULL;
 
-       if(())
-       {
-        
-       }
-     
-   }
+    if (*headd == NULL) {  // Empty list
+        *headd = new_node;
+        printf("%d inserted as the first node.\n", value);
+        return;
+    }
+
+    struct node* temp = *headd;
+    while (temp->link != NULL) {
+        temp = temp->link;
+    }
+    temp->link = new_node;
+
+    printf("%d inserted at the end.\n", value);
 }
 
-int main()
-{
-    
-    struct node* head=NULL;
-    
-    head=(struct node*)malloc(sizeof(struct node));
 
-    
-    head->data=10;
-    head->link=NULL;
+void insertrandom(struct node** head) {
+    int value, pos;
+    printf("Enter the value to insert: ");
+    scanf("%d", &value);
 
-    insertatend(&head,20);
+    printf("Enter the value after which to insert %d: ", value);
+    scanf("%d", &pos);
+
+    struct node* temp = *head;
+    while (temp != NULL && temp->data != pos) {
+        temp = temp->link;
+    }
+
+    if (temp == NULL) {
+        printf("Value %d not found. Cannot insert %d.\n", pos, value);
+        return;
+    }
+
+    struct node* rnode = (struct node*)malloc(sizeof(struct node));
+    rnode->data = value;
+    rnode->link = temp->link;
+    temp->link = rnode;
+
+    printf("%d inserted after %d.\n", value, pos);
+}
+
+
+void deleteatbegin(struct node** head) {
+    if (*head == NULL) {
+        printf("List is empty. Nothing to delete at beginning.\n");
+        return;
+    }
+
+    struct node* temp = *head;
+    *head = temp->link;
+    printf("%d has been deleted from the beginning.\n", temp->data);
+    free(temp);
+}
+
+
+void deleteatend(struct node** head) {
+    if (*head == NULL) {
+        printf("List is empty. Nothing to delete at end.\n");
+        return;
+    }
+
+    if ((*head)->link == NULL) {
+        printf("%d has been deleted from the end.\n", (*head)->data);
+        free(*head);
+        *head = NULL;
+        return;
+    }
+
+    struct node* temp = *head;
+    while (temp->link->link != NULL) {
+        temp = temp->link;
+    }
+    printf("%d has been deleted from the end.\n", temp->link->data);
+    free(temp->link);
+    temp->link = NULL;
+}
+
+// Delete a node by value (middle deletion)
+void deleteatrandom(struct node** head) {
+    if (*head == NULL) {
+        printf("List is empty. Nothing to delete.\n");
+        return;
+    }
+
+    int value;
+    printf("Enter the value to delete: ");
+    scanf("%d", &value);
+
+    struct node* temp = *head;
+    struct node* prev = NULL;
+
+    // If head node holds the value
+    if (temp->data == value) {
+        *head = temp->link;
+        printf("%d has been deleted from the list.\n", value);
+        free(temp);
+        return;
+    }
+
+    // Search for the value in the list
+    while (temp != NULL && temp->data != value) {
+        prev = temp;
+        temp = temp->link;
+    }
+
+    if (temp == NULL) {
+        printf("Value %d not found in the list.\n", value);
+        return;
+    }
+
+    prev->link = temp->link;
+    printf("%d has been deleted from the list.\n", value);
+    free(temp);
+}
+
+
+void display(struct node* head) {
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
+
+    struct node* temp = head;
+    printf("List: ");
+    while (temp != NULL) {
+        printf("[%d] -> ", temp->data);
+        temp = temp->link;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct node* head = NULL;
+
+
+    insertionatbegin(&head);  
+    insertatend(&head);      
+    insertatend(&head);       
+    insertionatbegin(&head);  
     display(head);
 
-    insertionatbegin(&head,5);
+    insertrandom(&head);    
     display(head);
 
-    insertrandom(&head,7);
+    deleteatbegin(&head);
     display(head);
 
     deleteatend(&head);
     display(head);
 
-    
+    deleteatrandom(&head);
+    display(head);
+
     return 0;
-    
 }

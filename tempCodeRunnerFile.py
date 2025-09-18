@@ -1,0 +1,1 @@
+a = float(input("enter the num : "))

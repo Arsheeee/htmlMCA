@@ -1,0 +1,150 @@
+<html>
+    <head></head>
+    <body>
+        <h1 id="h1">Sum of two numbers</h1>
+
+        <button id="red" onclick="red()">Red</button>
+        <button id="blue" onclick="blue()">Blue</button>
+        <button id="green" onclick="green()">Green</button><br><br>
+    
+
+        First number  : <input type="number" id="n1">
+        Second number : <input type="number" id="n2"><br><br>
+        <button onclick="sum()">Sum</button><br><br>
+
+        <!-- math fn -->
+
+        enter the number to round of: <input type="number" id="r1">
+        <button id="roundof" onclick="round()">Roundof</button> <br><br>
+        <p id="rr">Rounded num : </p><br>
+        
+        enter the number to ceil of: <input type="number" id="c1">
+        <button id="ceilof" onclick="ceil()">Ceil of</button><br><br>
+        <p id="cc">Ceiled num : </p><br>
+        
+        enter the number to floor of: <input type="number" id="f1">
+        <button id="floor" onclick="floor()">floor of</button><br><br>
+        <p id="ff">floor num : </p><br>
+        
+        enter the number to trunk of: <input type="number" id="t1">
+        <button id="trunk" onclick="trunk()">trunk of</button><br><br>
+        <p id="tt">Trunk num : </p><br>
+
+        enter the number to sign of: <input type="number" id="s1">
+        <button id="sign" onclick="sign()">sign of</button><br><br>
+        <p id="ss">Signed num : </p><br>
+
+        enter the number to be powered : <input type="number" id="p1">
+        enter the exponent: <input type="number" id="p2">
+        <button id="powerof" onclick="power()">power of</button><br><br>
+        <p id="pp">powered num : </p><br>
+
+        enter the number to be squared: <input type="number" id="sq1">
+        <button id="squareof" onclick="square()">square of</button><br><br>
+        <p id="sq">Squared num : </p><br>
+
+        enter the number to have abs: <input type="number" id="abs1">
+        <button id="absof" onclick="abs()">abs of</button><br><br>
+        <p id="abs">Abs num : </p><br>
+        
+        <p id="tt">legth is: </p><br><br>
+        <p id="uu">in upper case is: </p><br><br>
+        
+        <!-- \\math functions\\ -->
+        
+        
+        <p id="pp"></p>
+        <script>
+          let x=prompt("enter your name");
+          let t="abcd";
+          let len=t.length;
+          let upp=t.toUpperCase();
+        
+          function sum()
+          {
+              let a=parseInt( document.getElementById("n1").value);
+              let b=parseInt( document.getElementById("n2").value);
+              let s=a+b;
+              
+              // math fn
+              
+              
+              
+              document.getElementById("pp").innerHTML="sum="+s;
+              alert("sum="+s);
+            }
+            
+            function red()
+            {
+              document.getElementById("h1").style.color="red";
+            }
+            function blue()
+            {
+              document.getElementById("h1").style.color="blue";
+            }
+            function green()
+            {
+              document.getElementById("h1").style.color="green";
+            }
+            document.getElementById("h1").innerHTML="Welcome Sir " +x;
+            
+            document.getElementById("ttt").innerHTML=len;
+            document.getElementById("uu").innerHTML=upp;
+            
+            // Math fn
+            function round()
+            {
+            let r=parseFloat(document.getElementById("r1").value);
+            let roundd=Math.round(r);
+             document.getElementById("rr").innerHTML="Rounded num :"+roundd;
+          }
+            function ceil()
+            {
+            let c=parseFloat(document.getElementById("c1").value);
+              let ceill=Math.ceil(c);
+             document.getElementById("cc").innerHTML="Ceiled num : "+ceill;
+          }
+            function floor()
+            {
+            let c=parseFloat(document.getElementById("f1").value);
+              let floor=Math.floor(c);
+             document.getElementById("ff").innerHTML="Floored num : "+floor;
+          }
+            function trunk()
+            {
+            let c=parseFloat(document.getElementById("t1").value);
+              let trunk =Math.trunc(c);
+             document.getElementById("tt").innerHTML="Trunk num : "+trunk;
+          }
+            function sign()
+            {
+            let c=parseFloat(document.getElementById("s1").value);
+              let sign=Math.sign(c);
+             document.getElementById("ss").innerHTML="Signed num : "+sign;
+          }
+            function power()
+            {
+            let c=parseInt(document.getElementById("p1").value);
+            let d=parseInt(document.getElementById("p2").value);
+              let power=Math.pow(c,d);
+             document.getElementById("pp").innerHTML="Powered num : "+power;
+          }
+            function square()
+            {
+            let c=parseInt(document.getElementById("sq1").value);
+              let square=Math.x * x(c);
+             document.getElementById("sq").innerHTML="Squared num : "+square;
+          }
+            function abs()
+            {
+            let c=parseFloat(document.getElementById("abs1").value);
+              let abs=Math.abs(c);
+             document.getElementById("abs").innerHTML="Absn um : "+abs;
+          }
+
+           
+
+        </script>
+
+    </body>
+</html>
