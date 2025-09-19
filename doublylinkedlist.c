@@ -41,26 +41,117 @@ struct node* lastnode=(struct node*)malloc(sizeof(struct node));
 {
   int value;
   
-  printf("enter the first value : ");
+  printf("enter the last value : ");
   scanf("%d",&value);
   
   struct node* temp=head;
 
-  while(temp!=NULL)
+  while(temp->nextlink!=NULL)
   {
     temp=temp->nextlink;
-    printf("[%d]->",temp->data);
+   
   }
-
+  
+  temp->nextlink=lastnode;
+  lastnode->prevlink=temp;
+  lastnode->nextlink=NULL;
+  
   lastnode->data=value;
   
 }
 
 }
 
+void insetrandom( struct node * head)
+{
+   struct node* randomnode=(struct node*)malloc(sizeof(struct node));
 
-insertatend()
-{}
+   int pos;
+   int value;
+
+   printf("enter the position  to be inserted randomly : ");
+   scanf("%d",&pos);
+   printf("enter the value to be inserted randomly : ");
+   scanf("%d",&value);
+
+   struct node* prev=head;
+   struct node* temp=head->nextlink;
+
+   int count=1;
+
+   while (temp->nextlink!=NULL)
+   {
+     temp=temp->nextlink;
+     prev=prev->nextlink;
+     count++;
+
+     if(count==pos)
+     {
+       randomnode->prevlink=prev;
+       prev->nextlink=randomnode;
+       randomnode->nextlink=temp;
+       temp->prevlink=randomnode;
+
+       randomnode->data=value;
+     }
+   }
+   
+
+
+}
+
+void deleteatbeg(struct node* head)
+{
+  struct node* temp=head;
+
+  temp->nextlink=temp->nextlink->nextlink;
+  temp->nextlink->nextlink->prevlink=temp;
+
+  printf("Insertion is done , Now the first node will be deleted . \n");
+}
+
+void deleteatend(struct node* head)
+{
+   struct node* temp=head;
+
+   while(temp->nextlink->nextlink!=NULL)
+   {
+    temp=temp->nextlink;
+  }
+  temp->nextlink=NULL;
+   printf("Now , the last node will be deleted below .");
+   printf("\n");
+}
+
+void deleteatrandom (struct node* head)
+{
+  int pos;
+  struct node*temp=head->nextlink;
+  struct node*prev=head;
+  printf("Enter the position to be deleted : ");
+  scanf("%d",&pos);
+
+  
+  int count=1;
+
+  while(temp!=NULL)
+  {
+    temp=temp->nextlink;
+    prev=prev->nextlink;
+    count++;
+    
+    if(count==pos)
+    {
+      prev->nextlink=temp->nextlink;
+      temp->nextlink->prevlink = prev;
+      
+    }
+  }
+  printf("Now , the deletion is completed.");
+  printf("\n");
+}
+
+
 
 void display( struct node* head)
 {
@@ -72,7 +163,7 @@ void display( struct node* head)
     temp=temp->nextlink;
   }
   
-  
+  printf("\n");
   
 }
 
@@ -85,7 +176,7 @@ int main()
   struct node* firstnode=(struct node*)malloc(sizeof(struct node));
 
   int value;
-  printf("enter the initial value : ");
+  printf("enter the second value : ");
   scanf("%d",&value);
   
   head->nextlink=firstnode;
@@ -99,6 +190,27 @@ int main()
   // display(head);
 
   insertatbeg(head,firstnode);
+  display(head);
+
+  insertatend(head);
+  display(head);
+
+  insetrandom(head);
+  display(head);
+
+  insetrandom(head);
+  display(head);
+
+  insetrandom(head);
+  display(head);
+
+  deleteatbeg(head);
+  display(head);
+
+  deleteatend(head);
+  display(head);
+
+  deleteatrandom(head);
   display(head);
    
   return 1;
