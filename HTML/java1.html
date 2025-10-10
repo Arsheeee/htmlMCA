@@ -1,0 +1,269 @@
+<html>
+<head>
+    <title>My Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 10px 20px;
+            margin: 6px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #357abd;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        input, p {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="h1">Math and String Calculator</h1>
+
+    <button onclick="red()">Red</button>
+    <button onclick="blue()">Blue</button>
+    <button onclick="green()">Green</button><br>
+
+    <h2>Math Functions</h2>
+    First number: <input type="number" id="n1"><br>
+    Second number: <input type="number" id="n2"><br>
+    <button onclick="sum()">Sum</button><br>
+    <p id="sum-result">Sum: </p><br>
+
+    Number to round: <input type="number" id="r1"><br>
+    <button onclick="round()">Round</button><br>
+    <p id="round-result">Rounded num: </p><br>
+
+    Number to ceil: <input type="number" id="c1"><br>
+    <button onclick="ceil()">Ceil</button><br>
+    <p id="ceil-result">Ceiled num: </p><br>
+
+    Number to floor: <input type="number" id="f1"><br>
+    <button onclick="floor()">Floor</button><br>
+    <p id="floor-result">Floored num: </p><br>
+
+    Number to trunc: <input type="number" id="t1"><br>
+    <button onclick="trunc()">Trunc</button><br>
+    <p id="trunc-result">Trunc num: </p><br>
+
+    Number to sign: <input type="number" id="s1"><br>
+    <button onclick="sign()">Sign</button><br>
+    <p id="sign-result">Signed num: </p><br>
+
+    Number to power: <input type="number" id="p1"><br>
+    Exponent: <input type="number" id="p2"><br>
+    <button onclick="power()">Power</button><br>
+    <p id="power-result">Powered num: </p><br>
+
+    Number to square: <input type="number" id="sq1"><br>
+    <button onclick="square()">Square</button><br>
+    <p id="square-result">Squared num: </p><br>
+
+    Number for abs: <input type="number" id="abs1"><br>
+    <button onclick="abs()">Abs</button><br>
+    <p id="abs-result">Abs num: </p><br>
+
+    <h1><u>String Functions</u></h1>
+    Enter a word: <input type="text" id="inp"><br>
+    Substring start: <input type="number" id="sub-start"><br>
+    Substring end: <input type="number" id="sub-end"><br>
+    Search term: <input type="text" id="search-term"><br>
+    Character to find: <input type="text" id="pos-char"><br>
+    <button onclick="length()">Length</button>
+    <button onclick="substring()">Substring</button>
+    <button onclick="uppercase()">Uppercase</button>
+    <button onclick="lowercase()">Lowercase</button>
+    <button onclick="search()">Search</button>
+    <button onclick="position()">Position</button><br>
+    <p id="all">Result: </p>
+
+    <script>
+        // Color buttons
+        function red() {
+            document.getElementById("h1").style.color = "red";
+        }
+        function blue() {
+            document.getElementById("h1").style.color = "blue";
+        }
+        function green() {
+            document.getElementById("h1").style.color = "green";
+        }
+
+        // Math functions
+        function sum() {
+            let num1 = parseFloat(document.getElementById("n1").value);
+            let num2 = parseFloat(document.getElementById("n2").value);
+            if (num1 == "" || num2 == "") {
+                alert("Please enter both numbers");
+                return;
+            }
+            let result = num1 + num2;
+            document.getElementById("sum-result").innerHTML = "Sum: " + result;
+        }
+
+        function round() {
+            let num = parseFloat(document.getElementById("r1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = Math.round(num);
+            document.getElementById("round-result").innerHTML = "Rounded num: " + result;
+        }
+
+        function ceil() {
+            let num = parseFloat(document.getElementById("c1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = Math.ceil(num);
+            document.getElementById("ceil-result").innerHTML = "Ceiled num: " + result;
+        }
+
+        function floor() {
+            let num = parseFloat(document.getElementById("f1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = Math.floor(num);
+            document.getElementById("floor-result").innerHTML = "Floored num: " + result;
+        }
+
+        function trunc() {
+            let num = parseFloat(document.getElementById("t1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = Math.trunc(num);
+            document.getElementById("trunc-result").innerHTML = "Trunc num: " + result;
+        }
+
+        function sign() {
+            let num = parseFloat(document.getElementById("s1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = Math.sign(num);
+            document.getElementById("sign-result").innerHTML = "Signed num: " + result;
+        }
+
+        function power() {
+            let num = parseFloat(document.getElementById("p1").value);
+            let exp = parseFloat(document.getElementById("p2").value);
+            if (num == "" || exp == "") {
+                alert("Please enter both numbers");
+                return;
+            }
+            let result = Math.pow(num, exp);
+            document.getElementById("power-result").innerHTML = "Powered num: " + result;
+        }
+
+        function square() {
+            let num = parseFloat(document.getElementById("sq1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = num * num;
+            document.getElementById("square-result").innerHTML = "Squared num: " + result;
+        }
+
+        function abs() {
+            let num = parseFloat(document.getElementById("abs1").value);
+            if (num == "") {
+                alert("Please enter a number");
+                return;
+            }
+            let result = Math.abs(num);
+            document.getElementById("abs-result").innerHTML = "Abs num: " + result;
+        }
+
+        // String functions
+        function length() {
+            let word = document.getElementById("inp").value;
+            if (word == "") {
+                alert("Please enter a word");
+                return;
+            }
+            let result = word.length;
+            document.getElementById("all").innerHTML = "Result: Length is " + result;
+        }
+
+        function substring() {
+            let word = document.getElementById("inp").value;
+            let start = parseInt(document.getElementById("sub-start").value);
+            let end = parseInt(document.getElementById("sub-end").value);
+            if (word == "" || start == "" || end == "") {
+                alert("Please enter a word and start/end positions");
+                return;
+            }
+            let result = word.substring(start, end);
+            document.getElementById("all").innerHTML = "Result: Substring is " + result;
+        }
+
+        function uppercase() {
+            let word = document.getElementById("inp").value;
+            if (word == "") {
+                alert("Please enter a word");
+                return;
+            }
+            let result = word.toUpperCase();
+            document.getElementById("all").innerHTML = "Result: Uppercase is " + result;
+        }
+
+        function lowercase() {
+            let word = document.getElementById("inp").value;
+            if (word == "") {
+                alert("Please enter a word");
+                return;
+            }
+            let result = word.toLowerCase();
+            document.getElementById("all").innerHTML = "Result: Lowercase is " + result;
+        }
+
+        function search() {
+            let word = document.getElementById("inp").value;
+            let term = document.getElementById("search-term").value;
+            if (word == "" || term == "") {
+                alert("Please enter a word and search term");
+                return;
+            }
+            let result = word.includes(term) ? "Found" : "Not found";
+            document.getElementById("all").innerHTML = "Result: Search term is " + result;
+        }
+
+        function position() {
+            let word = document.getElementById("inp").value;
+            let char = document.getElementById("pos-char").value;
+            if (word == "" || char == "") {
+                alert("Please enter a word and a character");
+                return;
+            }
+            let result = word.indexOf(char);
+            if (result == -1) {
+                result = "Not found";
+            }
+            document.getElementById("all").innerHTML = "Result: Position is " + result;
+        }
+    </script>
+</body>
+</html>

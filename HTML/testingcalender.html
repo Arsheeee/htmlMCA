@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="number" id="year" placeholder="Enter year" />
+<button onclick="generateCalendar()">Show Calendar</button>
+
+<div id="calendar"></div>
+
+<script>
+function generateCalendar() {
+  const year = parseInt(document.getElementById('year').value);
+  if (!year) return;
+
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  let output = "";
+
+  const calendarDiv = document.getElementById("calendar");
+  calendarDiv.innerHTML = ""; 
+
+  for (let m = 0; m < 12; m++) {
+   
+    const monthDiv = document.createElement("div");
+    monthDiv.style.marginBottom = "20px";
+
+   
+    const title = document.createElement("h3");
+    title.textContent = months[m] + " " + year;
+    monthDiv.appendChild(title);
+
+    const table = document.createElement("table");
+    table.style.borderCollapse = "collapse";
+
+    const headerRow = document.createElement("tr");
+    for (const dayName of daysOfWeek) {
+      const th = document.createElement("th");
+      th.textContent = dayName;
+      th.style.border = "1px solid black";
+      th.style.padding = "5px";
+      headerRow.appendChild(th);
+    }
+    table.appendChild(headerRow);
+
+    const firstDay = new Date(year, m, 1).getDay();
+    const daysInMonth = new Date(year, m + 1, 0).getDate();
+
+    let date = 1;
+
+    for (let i = 0; i < 6; i++) {
+      const row = document.createElement("tr");
+
+      for (let j = 0; j < 7; j++) {
+        const cell = document.createElement("td");
+        cell.style.border = "1px solid black";
+        cell.style.padding = "5px";
+        cell.style.textAlign = "center";
+
+        if (i === 0 && j < firstDay) {
+         
+          cell.textContent = "";
+        } else if (date > daysInMonth) {
+          
+          cell.textContent = "";
+        } else {
+          cell.textContent = date;
+          date++;
+        }
+
+        row.appendChild(cell);
+      }
+
+      table.appendChild(row);
+
+      if (date > daysInMonth) break; 
+    }
+
+    monthDiv.appendChild(table);
+    calendarDiv.appendChild(monthDiv);
+  }
+}
+</script>
+
+</body>
+</html>

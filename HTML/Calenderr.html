@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    enter the year: <input type="number" id="cal">
+    <script>
+        var cal="<table BORDER='1'><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Tue</th>Wed<th>Thu</th><th>Fri</th><th>Sat</th></tr>";
+         var t="</table>" 
+
+         const month=0;
+         var c= new Date(2021,month);
+         var day=c.getDate();
+         var firstday=new Date(2021,month,0);
+         var lastday=new Date(2021,month+1,0);
+         
+         for(var i=0;i<firstday;i++)
+         {
+            cal+="<td></td>";
+         }
+         for(let date=1;date<=lastDay.getDate();date++)
+         {
+            cal+=`<td>${date}</td>`;
+
+            if((firstday.getDate() + date) % 7 ===0)
+         {
+            cal+="</tr><tr>";
+         }
+         }
+
+        </script>
+
+</body>
+</html>

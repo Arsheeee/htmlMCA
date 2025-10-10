@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .month {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 250px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    Enter the year: <input type="number" id="inp" placeholder="e.g., 2025">
+    <button onclick="Calendar()">Search</button><br><br>
+    <div id="calendar" class="calendar-container"></div>
+
+    <script>
+        function Calendar() {
+            const year = parseInt(document.getElementById('inp').value);
+            if (isNaN(year) || year < 1900 || year > 2100) {
+                alert('Enter a year between 1900 and 2100');
+                return;
+            }
+
+            const calendar = document.getElementById('calendar');
+            calendar.innerHTML = '';
+
+            const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                            'July', 'August', 'September', 'October', 'November', 'December'];
+
+            for (let month = 0; month < 12; month++) {
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                let table = `<div class="month"><h3>${months[month]} ${year}</h3><table>`;
+                table += '<tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr><tr>';
+
+                for (let i = 0; i < firstDay; i++) {
+                    table += '<td></td>';
+                }
+
+                let day = 1;
+                for (let i = firstDay; i < 7; i++) {
+                    table += day <= daysInMonth ? `<td>${day}</td>` : '<td></td>';
+                    day++;
+                }
+                table += '</tr>';
+
+                while (day <= daysInMonth) {
+                    table += '<tr>';
+                    for (let i = 0; i < 7 && day <= daysInMonth; i++) {
+                        table += `<td>${day}</td>`;
+                        day++;
+                    }
+                    while (table.split('<tr>')[table.split('<tr>').length - 1].split('<td>').length - 1 < 7) {
+                        table += '<td></td>';
+                    }
+                    table += '</tr>';
+                }
+
+                table += '</table></div>';
+                calendar.innerHTML += table;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <title></title>
+<body>
+    <!-- <button id="button">Change color</button>
+    <button id="sss">Show cars</button> -->
+    <button id="cl">Color</button>
+
+    <p id="abc">Car is  </p>
+    <script>
+
+        // document.getElementById("button").addEventListener("click",myfn);
+        // document.getElementById("sss").addEventListener("click", chngclr);
+        document.getElementById("cl").addEventListener("click", changecolor);
+        //  function myfn()
+        //  {
+        //     document.body.style.background="#ff0000";
+        //  }  
+
+        //  function chngclr()
+        //  {
+            
+        //     const clrcode="123456ABCDEF";
+        //     const cars=new Array('BMW','LEXUS','TOYOTA');
+        //     // document.getElementById("abc").innerHTML=cars;
+        //     let list="<ul>";
+        //  }
+         function changecolor()
+         {
+            rcol="#"
+            const clrcode="123456ABCDEF";
+
+
+            for(let i=0;i<6;i++)
+         {
+            rcol+=clrcode[Math.floor(Math.random() * clrcode.length)];
+         }
+         document.body.style.background=rcol;
+         }
+    </script>
+</body>
+</html>
