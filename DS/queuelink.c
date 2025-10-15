@@ -1,9 +1,11 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<conio.h>
 
 struct node{
     int data;
     struct node* nextlink;
+    struct node* prevlink;
 };
 struct queue{
 
@@ -13,40 +15,61 @@ struct queue{
 
 void emptyque(struct queue* que)
 {
-   que->rear=NULL;
-   que->front=NULL;
+    que->front=NULL;
+    que->rear=NULL;
 }
 
-void display(struct node* que)
+
+
+void display(struct queue* que)
 {
-
-}
-
-void enque(struct queue* que,int value)
-{
-   int value;
-
-   struct node* newnode = (struct node*)malloc(sizeof(struct node));
-
-   if(rea)
-
-   
-   
-
-}
-
-void deque(struct node* que)
-{
-    struct node* temp=firstnode->nextlink;
-    struct node* tempprev=firstnode;
-    while (temp->nextlink!=NULL)
-    {
+    printf("Queue: ");
+    while(que->rear->nextlink!=NULL){
+        
+        struct node* temp=que->front;
+        printf("[%d]->",temp->data);
         temp=temp->nextlink;
-          
     }
 
-    tempprev->nextlink=NULL;
-    front=tempprev;
+    printf("\n");
+}
+
+void enque(struct queue* que ,int value)
+{
+   struct node* newnode = (struct node*)malloc(sizeof(struct node));
+   
+   newnode->prevlink=NULL;
+   newnode->nextlink=NULL;
+   newnode->data=value;
+
+   if(que->rear==0)
+   {
+    que->rear=newnode;
+    que->front=newnode;
+   }
+   else
+   {
+    que->rear->nextlink=newnode;
+    newnode->prevlink=que->rear;
+    que->rear=newnode;
+   }
+
+   printf("enque Succesfull\n");
+
+}
+
+void deque(struct queue* que)
+{
+    if(que->front==0)
+    {
+        printf("nothing to delete");
+    }
+
+    else{
+        que->front=que->front->nextlink;
+        que->front->prevlink=NULL;
+    
+    }
     printf("dequeue succesfull");
 
     
@@ -54,8 +77,10 @@ void deque(struct node* que)
 
 int main()
 {
-    struct queue que;
-    emptyque(&que);
+    struct queue* que=NULL;
+    emptyque(que);
+    //struct node* front = struct node* rear = NULL;
+    
 
     int choice;
     int value;
@@ -71,23 +96,28 @@ int main()
            case 1:
             printf("enter the value to enqueue");
             scanf("%d",value);
-            enque(&que,value);
+            enque(que,value);
             break;
 
            case 2:
-            deque(&que);
+            deque(que);
             break;
 
           case 3:
-           display(&que);
+           display(que);
            break;
 
           case 4:
-           while(que.front!=NULL)
+           while(que->front!=NULL)
            {
-            deque(&que);
+            deque(que);
+            free(que);
+            printf("Exiting...");
             break;
            }
+
+           default:
+           printf("Invalid Choice");
         }
     }
     
