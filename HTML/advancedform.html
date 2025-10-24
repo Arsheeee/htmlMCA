@@ -27,7 +27,8 @@
                         <tr>
                             <td>Age</td>
                             <td>
-                                <input type="text">
+                                <input type="text" id="ramanan">
+                                <p style="color: red;" id="agepara1"></p>
                                 <!-- <select name="Age">
                                     <option value="age1">18</option>
                                     <option value="age2">19</option>
@@ -110,10 +111,19 @@
                       para.innerHTML="Name cant be blank";
                       event.preventDefault();
                    }
-                //    else{
-                //     para.style.display="none";
-                //     return true;
-                //    }
+                   else{
+                    para.style.display="none";
+                    return true;
+                   }
+
+                   let age=document.getElementById("ramanan").value;
+                   let agepara=document.getElementById("agepara1");
+
+                   if(isNaN(age) || age<18)
+                   {
+                     agepara.innerHTML="age cant be blank and must be greater than 18";
+                     event.preventDefault();
+                   }
                    
                 }
             </script>
