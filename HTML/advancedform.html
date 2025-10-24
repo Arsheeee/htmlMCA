@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+
+        
+        <body style="background:skyblue;">
+            <marquee behavior="alternate" direction="right" scroll amount="10" onmouseover="this.stop()" onmouseout="this.start()" bgcolor="skyblue" style="color:green;">
+                
+                <h1>WELCOME TO FRESHERS WORLD!!!</h1>
+                
+            </marquee>
+    
+          <center>
+              <form>
+                  <table style="background-color: bisque;" border="2">
+                      <tr>
+                          <th colspan="2">Registration Form</th>
+                        </tr>
+                        
+                        <tr>
+                            <td>Name</td>
+                            <td> <input type="text" id="name1">
+                            <p style="color: red;" id="para1"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Age</td>
+                            <td>
+                                <input type="text">
+                                <!-- <select name="Age">
+                                    <option value="age1">18</option>
+                                    <option value="age2">19</option>
+                            <option value="age3">20</option>
+                            <option value="age4">21</option>
+                        </select> -->
+                    </td>
+                </tr>
+                <tr>
+                  <td>Password</td>
+                  <td><input type="password"></td>
+                </tr>
+                <tr>
+                    <td>Re-enter Password</td>
+                    <td><input type="password"></td>
+                </tr>
+                <tr>
+                 <td rowspan="5"><center>Select your security question</center></td></tr>
+                 <tr><td><input type="radio" name="a">What is your pet name?</td></tr>
+                 <tr><td><input type="radio" name="a">Who is your best friend?</td></tr>
+                <tr><td><input type="radio" name="a">What is your favourite color?</td></tr>
+                  <tr><td><input type="radio" name="a">Who is your favourite teacher?</td></tr>
+                </tr>
+                <tr>
+                    <td>Answer of security question</td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Email id</td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>Languages Known</td>
+                    <td><input type="checkbox">Malayalam
+                    <input type="checkbox">English
+                    <input type="checkbox">Hindi
+                </tr>
+                <tr>
+                  <td>Phone Number</td>
+                  <td>
+                    <table border="1">
+                        <tr>
+                            <th>Home</th>
+                            <th>Office</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                        </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                    <td>Upload CV</td>
+                    <td><input type="file"></td>
+                </tr>
+                <tr>
+    
+                    <td><center><input type="reset" value="Reset"></center></td>
+                    <td><center><input type="submit" value="Submit" onclick="name12()"></center></td>
+                     <!-- <td><button onclick="name12()"></button></td> -->
+                    
+                </tr>
+
+                
+            </table>
+            
+            </center>
+            </form>
+
+            <script>
+                function name12()
+                {
+                    
+                  let x=document.getElementById("name1").value;
+                  let para=document.getElementById("para1");
+                
+                  if(x=="")
+                   {
+                      para.innerHTML="Name cant be blank";
+                      event.preventDefault();
+                   }
+                //    else{
+                //     para.style.display="none";
+                //     return true;
+                //    }
+                   
+                }
+            </script>
+        </body>
+
+</html>
