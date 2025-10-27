@@ -39,11 +39,12 @@
                 </tr>
                 <tr>
                   <td>Password</td>
-                  <td><input type="password"></td>
+                  <td><input type="password" id="pass">
+                </td>
                 </tr>
                 <tr>
                     <td>Re-enter Password</td>
-                    <td><input type="password"></td>
+                    <td><input type="password" id="repass"><p style="color: red;" id="parapass"></p></td>
                 </tr>
                 <tr>
                  <td rowspan="5"><center>Select your security question</center></td></tr>
@@ -122,6 +123,17 @@
                    if(isNaN(age) || age<18)
                    {
                      agepara.innerHTML="age cant be blank and must be greater than 18";
+                     event.preventDefault();
+                   }
+
+                   //password
+
+                   let pass=document.getElementById("pass");
+                   let repass=document.getElementById("repass");
+                   let parapass=document.getElementById("parapass");
+
+                   if(pass != repass){
+                     parapass.innerHTML="Password Mismatch";
                      event.preventDefault();
                    }
                    

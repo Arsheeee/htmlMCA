@@ -1,7 +1,13 @@
-<html><head><h1><center>Marksheet</center></h1></head>
+<html><head>
+    <style>
+     .st{
+        
+     }   
+    </style>
+    <h1><center>Marksheet</center></h1></head>
     <body>
       <form action="progr1_1.php" method="get">
-        Student name : <input type="text" name="nam"><br><br>
+        <label class="st">Student name : </label><input type="text" name="nam"><br><br>
         English:<input type="text" name="eng"><br><br>
         Malayalam :<input type="text" name="mal"><br><br>
         Maths :<input type="text" name="mat"><br><br>
