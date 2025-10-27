@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head><h1>Super Heroes</h1></head>
+    <body>
+        <img src="http://localhost/htmlMCA/HTML/neeli.jpg" id="neeli">
+        <p id="lokah">O-ve is the best !!</p>
+
+        <script>
+            const img = document.getElementById("neeli");
+            const j = document.getElementById("lokah");
+            img.addEventListener("mouseover",myfun);
+
+            function myfun(){
+                img.src = "http://localhost/htmlMCA/HTML/ironman.jpg";
+                j.textContent = "I am Iron Man";
+            }
+
+            img.addEventListener("mouseout",yourfun);
+            
+            function yourfun(){
+                img.src = "http://localhost/htmlMCA/HTML/batman.jpg";
+                j.textContent = "I am batman";
+            }
+
+
+
+        </script>
+    </body>
+</html>
