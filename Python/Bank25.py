@@ -21,7 +21,7 @@ name=input("Enter your name : ")
 balance=float(input("Enter starting balance : "))                       
 account=BankAccount(name,balance)
 while True :
-    print("Choose Operation")
+    print("Choose Operation" CH)
     Choice = input("deposit,withdraw,balance,exit:").lower()
     if Choice == "deposit":
         amount = float(input("Amount to Deposit : "))
