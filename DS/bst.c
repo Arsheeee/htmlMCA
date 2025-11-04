@@ -58,8 +58,14 @@ void insert(int value)
 
 void preorder(struct node * root)
 {
-  
+  if(root!=NULL)
+  {
+    printf("%d",root->key);
+    preorder(root->leftlink);
+    preorder(root->rightlink);
+  }
 }
+
 
 
 void inorder(struct node *root)
@@ -74,6 +80,41 @@ void inorder(struct node *root)
 
 void postorder(struct node *root)
 {
+   if(root!=NULL)
+   {
+     postorder(root->leftlink);
+     postorder(root->rightlink);
+     printf("%d",root->key);
+   }
+}
+
+void delete(struct node *root, int dltvalue)
+{
+   struct node *temp=root,*parent,*succ;
+
+   while(temp!=NULL && temp->key==dltvalue)
+   {
+    parent=temp;
+    temp=(dltvalue < temp->key) ? temp->leftlink : temp->rightlink;
+
+   }
+   if(temp==NULL )
+   {
+     printf("value not found %d",dltvalue);
+
+   }
+   
+   //case 1 if o child else 1 child
+   if(temp->leftlink == NULL && temp->rightlink==NULL)
+   {
+     struct node *child = (temp->leftlink) ? temp->leftlink : temp->rightlink;
+     if(parent==NULL)
+     {
+       root=child;
+     }
+
+   }
+
 
 }
 
@@ -82,9 +123,10 @@ int main()
 {
     int choice;
     int value;
+    int dltvalue;
     while(1)
     {
-     printf("\n 1.Insert 2.Preorder 3.Inorder 4.Postorder 5.Exit \n");
+     printf("\n 1.Insert 2.Preorder 3.Inorder 4.Postorder 5.delete 6.Exit \n");
      printf("enter your choice : ");
      scanf("%d",&choice);
 
@@ -112,6 +154,11 @@ int main()
          break;
 
          case 5:
+         printf("Enter the element to delete : ");
+         scrinf("%d",&dltvalue);
+         delete(root,dltvalue);
+
+         case 6:
          printf("Exiting...\n");
          exit(0);
 
