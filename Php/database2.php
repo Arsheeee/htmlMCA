@@ -13,14 +13,19 @@ if($con)
     echo " connection success";
 else
     echo "cant be connected";
+// $rollfetch="SELECT rollno from student";
+// $rollresult=mysqli_query($con,$sqlfetch);
+ 
+// if(mysqli_num_rows($rollresult))
 
 
+// echo '<select><option name="roll" value=</select>'
 
 $sqlfetch="SELECT * from student";
 
 $result=mysqli_query($con,$sqlfetch);
 
-if(mysqli_num_rows($result)>=1)
+if(mysqli_num_rows($result)>0)
     while($row=mysqli_fetch_assoc($result))
 {
     // echo "Rollno :" .$row["rollno"];
