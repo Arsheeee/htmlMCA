@@ -1,7 +1,8 @@
 <?php
 $con=mysqli_connect("localhost","root","","arshi");
 if($con)
-    echo " connection success";
+    // echo " connection success";
+  echo " ";
 else
     echo "cant be connected";
 
@@ -32,7 +33,8 @@ $result=mysqli_query($con,$fetch);
     $query = "SELECT * FROM student WHERE rollno='$roll'";
     $result = mysqli_query($con,$query);
         if($row=mysqli_fetch_assoc($result))
-        {
+        {   
+            echo "<form action='' method='POST'>";
             echo "<h3>Student Details : </h3>";
             echo "Roll NO : <input type='text' name='roll' value='{$row['rollno']}'><br><br>";
             echo "Name    : <input type='text' name='nam' value='{$row['name']}'><br><br>";
@@ -40,30 +42,32 @@ $result=mysqli_query($con,$fetch);
             echo "Mark1   : <input type='text' name='mark1' value='{$row['mark1']}'><br><br>";
             echo "Mark2   : <input type='text' name='mark2' value='{$row['mark2']}'><br><br>";
             echo "Total   : <input type='text' name='tot' value='{$row['total']}'><br><br>";
+            echo "<input type='submit' name='update' value='Update'>";
+            echo "</form>";
+            
         }
         else{
             echo "NO record found...";
         }
   }
-  mysqli_close($con);
+//   mysqli_close($con);
 ?>
 
-<form action="" method="POST">
-    <input type="submit" name="update" value="Update">
-</form>
 
 <?php
   function Updatestd()
   {
-      $con=mysqli_connect("localhost","root","","arshi");
-    $rollno = $_POST['rollno'];
-    $name = $_POST['nam'];
-    $Gender = $_POST['gende'];
+    global $con;  
+    echo "Hello";
+    //   $con=mysqli_connect("localhost","root","","arshi");
+    $rollno = $_POST['roll'];
+    $name = $_POST['nam'];     
+    $Gender = $_POST['gende']; 
     $mark1 = $_POST['mark1'];
     $mark2 = $_POST['mark2'];
-    $total = $_POST['tot'];
+    $total = $mark1+$mark2; 
 
-    $query = "UPDATE student SET name='$name', mark1='$mark1', mark2='$mark2' WHERE  rollno='$rollno'";
+    $query = "UPDATE student SET `name`='$name', `mark1`='$mark1', `mark2`='$mark2', `total`='$total' WHERE  `rollno`='$rollno'";
 
     if(mysqli_query($con,$query))
     {
@@ -78,4 +82,3 @@ $result=mysqli_query($con,$fetch);
   if(isset($_POST['update']))
     Updatestd();
  ?>
- 
