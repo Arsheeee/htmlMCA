@@ -88,24 +88,67 @@ void postorder(struct node *root)
    }
 }
 
-void delete(struct node *root, int dltvalue)
+struct node* findsucc(struct node* succ) //finding inorder succseccor >> here dlt nodes right subtrees min value is the inorder succseror
 {
-  struct node* temp=root;
-
-  while(temp!=NULL)
+  struct node *temp=root;
+  while(temp!=NULL && temp->leftlink!=NULL)
   {
-
-    if(temp->leftlink ==NULL && temp->rightlink==NULL)
-    {
-      free(temp);
-      printf("%d is successfully deleted",temp->key);
-
-    }
-    if(temp->leftlink!=NULL)
-    {
-      temp=temp->leftlink;
-    } 
+    temp=temp->leftlink;
   }
+  return temp;
+
+}
+
+struct node* delete(struct node *root, int dltvalue)
+{
+ if(root==NULL)
+ {
+  return root;
+ }
+ //traverse
+ if(dltvalue < root->key)
+ {
+    root=delete(root->leftlink,dltvalue);
+ }
+ else if (dltvalue > root->key)
+ {
+  root=delete(root->rightlink,dltvalue);
+ }
+ //case 1 : no child
+ else{
+     if(root->leftlink==NULL && root->rightlink==NULL)
+     {
+      free(root);
+     }
+
+     //case 2 : one child (node have a right child)
+     else if (root->leftlink==NULL && root->rightlink!=NULL)
+     {
+      struct node * temp=root->rightlink;
+      free(root);
+      return temp;
+
+     }
+     // one child (node have a left child)
+     else if(root->rightlink==NULL && root->leftlink!=NULL)
+     {
+      struct node* temp=root->leftlink;
+      return temp;
+     }
+     //case 3 : Two childeren
+     else
+     {
+       struct node* temp=findsucc(root->rightlink);
+       root->key=temp->key;
+       root->rightlink=delete(root->rightlink,temp->key);
+
+      
+     }
+     
+
+     
+ }
+ 
 }
 
 
