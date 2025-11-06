@@ -90,32 +90,22 @@ void postorder(struct node *root)
 
 void delete(struct node *root, int dltvalue)
 {
-   struct node *temp=root,*parent,*succ;
+  struct node* temp=root;
 
-   while(temp!=NULL && temp->key==dltvalue)
-   {
-    parent=temp;
-    temp=(dltvalue < temp->key) ? temp->leftlink : temp->rightlink;
+  while(temp!=NULL)
+  {
 
-   }
-   if(temp==NULL )
-   {
-     printf("value not found %d",dltvalue);
+    if(temp->leftlink ==NULL && temp->rightlink==NULL)
+    {
+      free(temp);
+      printf("%d is successfully deleted",temp->key);
 
-   }
-   
-   //case 1 if o child else 1 child
-   if(temp->leftlink == NULL && temp->rightlink==NULL)
-   {
-     struct node *child = (temp->leftlink) ? temp->leftlink : temp->rightlink;
-     if(parent==NULL)
-     {
-       root=child;
-     }
-
-   }
-
-
+    }
+    if(temp->leftlink!=NULL)
+    {
+      temp=temp->leftlink;
+    } 
+  }
 }
 
 

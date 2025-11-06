@@ -44,7 +44,7 @@ $result=mysqli_query($con,$fetch);
             echo "Total   : <input type='text' name='tot' value='{$row['total']}'><br><br>";
             echo "<input type='submit' name='update' value='Update'>";
             echo "</form>";
-            
+          
         }
         else{
             echo "NO record found...";
