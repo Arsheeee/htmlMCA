@@ -60,7 +60,7 @@ void preorder(struct node * root)
 {
   if(root!=NULL)
   {
-    printf("%d",root->key);
+    printf("%d ",root->key);
     preorder(root->leftlink);
     preorder(root->rightlink);
   }
@@ -73,7 +73,7 @@ void inorder(struct node *root)
   if(root!=NULL)
   {
     inorder(root->leftlink);
-    printf("%d",root->key);
+    printf("%d ",root->key);
     inorder(root->rightlink);
   }
 }
@@ -84,13 +84,13 @@ void postorder(struct node *root)
    {
      postorder(root->leftlink);
      postorder(root->rightlink);
-     printf("%d",root->key);
+     printf("%d ",root->key);
    }
 }
 
 struct node* findsucc(struct node* succ) //finding inorder succseccor >> here dlt nodes right subtrees min value is the inorder succseror
 {
-  struct node *temp=root;
+  struct node *temp=succ;
   while(temp!=NULL && temp->leftlink!=NULL)
   {
     temp=temp->leftlink;
@@ -108,17 +108,18 @@ struct node* delete(struct node *root, int dltvalue)
  //traverse
  if(dltvalue < root->key)
  {
-    root=delete(root->leftlink,dltvalue);
+    root->leftlink=delete(root->leftlink,dltvalue);
  }
  else if (dltvalue > root->key)
  {
-  root=delete(root->rightlink,dltvalue);
+  root->rightlink=delete(root->rightlink,dltvalue);
  }
  //case 1 : no child
  else{
      if(root->leftlink==NULL && root->rightlink==NULL)
      {
       free(root);
+      return NULL;
      }
 
      //case 2 : one child (node have a right child)
@@ -133,6 +134,7 @@ struct node* delete(struct node *root, int dltvalue)
      else if(root->rightlink==NULL && root->leftlink!=NULL)
      {
       struct node* temp=root->leftlink;
+      free(root);
       return temp;
      }
      //case 3 : Two childeren
@@ -141,13 +143,9 @@ struct node* delete(struct node *root, int dltvalue)
        struct node* temp=findsucc(root->rightlink);
        root->key=temp->key;
        root->rightlink=delete(root->rightlink,temp->key);
-
-      
      }
-     
-
-     
  }
+ return root;
  
 }
 
@@ -174,22 +172,26 @@ int main()
          case 2:
          printf("Preorder traversal \n");
          preorder(root);
+         printf("\n");
          break;
 
          case 3:
          printf("Inorder traversal \n");
          inorder(root);
+         printf("\n");
          break;
 
          case 4:
          printf("Postorder traversal \n");
          postorder(root);
+         printf("\n");
          break;
 
          case 5:
          printf("Enter the element to delete : ");
-         scrinf("%d",&dltvalue);
-         delete(root,dltvalue);
+         scanf("%d",&dltvalue);
+         root=delete(root,dltvalue);
+         break;
 
          case 6:
          printf("Exiting...\n");
