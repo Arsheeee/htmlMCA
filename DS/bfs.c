@@ -4,24 +4,67 @@
 int visited[MAX];
 int front=-1,rear=-1;
 int queue[MAX];
+int Adjarr[MAX][MAX];
+
+void enqueue(int node)
+{
+   if(rear==MAX-1)
+   {
+    printf(" Queue Overflow");
+   }
+   else{
+    if(front==-1)
+    {
+        front=0;     
+    }
+    rear++;
+    queue[rear]=node;
+   }
+}
+
+ int dequeue()
+ {
+    if(front == -1 || front > rear)
+    {
+        return -1; // qeueu become empty
+    }
+    else{
+        return queue[front++];
+    }
+ }
 
  void bfstraverse(int startnode ,int n)
  {
-   int currentnode,node;
+   int pvalue,node;
 
    for(int i=0; i<n; i++) //making every value not visited
    {
     visited[i]=0;
    }
 
-   //Choose starting node
-   printf("")
+   //starting node
+   printf("starting the traversal from %d",startnode);
+
+   //set astartnode
+   enqueue(startnode);
+   visited[0]=1;
+
+   //reapeat the checking and traversal process until the queue is empty
+   while(pvalue=dequeue() != -1)
+   {
+     printf("%d",pvalue); //printing current value(vertex)
+
+     for(int i=0; i<n; i++)
+     {
+        if(Adjarr[pvalue][i]==1 && )
+     }
+   }
+   
  }
 
 int main()
 {
     int vertex,n;
-    int Adjarr[MAX][MAX];
     int startnode;
     
 
