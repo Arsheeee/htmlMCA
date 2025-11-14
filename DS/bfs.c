@@ -47,16 +47,21 @@ void enqueue(int node)
 
    //set astartnode
    enqueue(startnode);
-   visited[0]=1;
+   visited[startnode]=1;
 
    //reapeat the checking and traversal process until the queue is empty
-   while(pvalue=dequeue() != -1)
+   while((pvalue=dequeue()) != -1)
    {
-     printf("%d",pvalue); //printing current value(vertex)
+     printf("%d\t",pvalue); //printing current value(vertex)
 
      for(int i=0; i<n; i++)
      {
-        if(Adjarr[pvalue][i]==1 && )
+        if(Adjarr[pvalue][i]==1 && !visited[i])
+        {
+            visited[i]=1;
+            enqueue(i);
+
+        }
      }
    }
    
@@ -90,7 +95,7 @@ int main()
     }
 
     printf("Enter the node to start your traversal(0---%d)",n-1);
-    scanf("%d",startnode);
+    scanf("%d",&startnode);
 
 
     bfstraverse(startnode,n);
