@@ -2,8 +2,8 @@
 #define MAX 100
 
 int visited[MAX];
-int front=-1,rear=-1;
 int queue[MAX];
+int front=-1,rear=-1;
 int Adjarr[MAX][MAX];
 
 void enqueue(int node)
