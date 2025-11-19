@@ -2,28 +2,88 @@
 #include<stdlib.h>
 #define MAX 100
 
-int Adjarr[MAX][MAX];
 int visited[MAX];
-int n;
+int top=-1;
+int stack[MAX];
+int Adjarr[MAX][MAX];
 
-void dfs(int crnode)
+void push(int node)
 {
-    printf("%d ", crnode);
-    visited[crnode]=1;
-
-   for(int i=0;i<n;i++)
+   if(top==MAX-1)
    {
-
-       if(Adjarr[crnode][i]==1 && !visited[i])
-       {
-         dfs(i);
-       }
+    printf(" Stack Overflow");
+   }
+   else{
+    if(top==-1)
+    {
+        top=0;     
+    }
+    top++;
+    stack[top]=node;
    }
 }
 
+ int pop()
+ {
+    if(top == -1)
+    {
+        return -1; // qeueu become empty
+    }
+    else{
+        return stack[top--];
+    }
+ }
+
+ void dfstraverse(int startnode ,int n)
+ {
+   int curr,node;
+
+   for(int i=0; i<n; i++) //making every value not visited
+   {
+    visited[i]=0;
+   }
+
+   //starting node
+   printf("starting the traversal from %d",startnode);
+
+   //set astartnode
+   push(startnode);
+   visited[startnode]=1;
+
+   //reapeat the checking and traversal process until the stack is empty
+   while( top != -1)
+   {
+    int flag=0;
+
+     for(int i=0; i<n; i++)
+     {
+        if(Adjarr[curr][i]==1 && !visited[i])
+        {
+            push(i);
+            printf("%d\t",i);
+            visited[i]=1;
+            curr=i;
+            flag=1;
+            break;
+            
+
+        }
+     }
+     if(flag==0)
+
+     {
+        pop();
+        if(top !=-1){
+        curr=stack[top];
+        }
+     }
+   }
+   
+ }
+
 int main()
 {
-    int vertex;
+    int vertex,n;
     int startnode;
     
 
@@ -52,6 +112,6 @@ int main()
     scanf("%d",&startnode);
 
 
-    dfs(startnode);
+    dfstraverse(startnode,n);
 
 }
